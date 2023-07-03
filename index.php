@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,50 +23,86 @@
    Se non viene specificato nessun filtro, visualizzare come in precedenza tutti gli hotel.
 -->
 
-<?php
 
-    $hotels = [
 
-        [
-            'name' => 'Hotel Belvedere',
-            'description' => 'Hotel Belvedere Descrizione',
-            'parking' => true,
-            'vote' => 4,
-            'distance_to_center' => 10.4
-        ],
-        [
-            'name' => 'Hotel Futuro',
-            'description' => 'Hotel Futuro Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 2
-        ],
-        [
-            'name' => 'Hotel Rivamare',
-            'description' => 'Hotel Rivamare Descrizione',
-            'parking' => false,
-            'vote' => 1,
-            'distance_to_center' => 1
-        ],
-        [
-            'name' => 'Hotel Bellavista',
-            'description' => 'Hotel Bellavista Descrizione',
-            'parking' => false,
-            'vote' => 5,
-            'distance_to_center' => 5.5
-        ],
-        [
-            'name' => 'Hotel Milano',
-            'description' => 'Hotel Milano Descrizione',
-            'parking' => true,
-            'vote' => 2,
-            'distance_to_center' => 50
-        ],
+<div class="mb-5 d-flex">
+    <div class="m-auto">
+        <form action="./index.php" method="get" class="d-flex -">
+           <label for="check"> Searh hotel with parking</label>
+            <select name="parking" class="form-select" id="parking">
+               <option >Choose</option>
+               <option value="Sì">With parking</option>
+               <option value="No">Without parking</option>
+            </select>
+            <input type="submit" value ="check">
 
-    ];
-?> 
+        </form>
+    </div>
+    
+</div>
+<div class="text-center">
+    <?php 
 
-<div class="container ">
+        $hotels = [ 
+   
+            [
+                'name' => 'Hotel Belvedere',
+                'description' => 'Hotel Belvedere Descrizione',
+                'parking' => true,
+                'vote' => 4,
+                'distance_to_center' => 10.4
+            ],
+            [
+                'name' => 'Hotel Futuro',
+                'description' => 'Hotel Futuro Descrizione',
+                'parking' => true,
+                'vote' => 2,
+                'distance_to_center' => 2
+            ],
+            [
+                'name' => 'Hotel Rivamare',
+                'description' => 'Hotel Rivamare Descrizione',
+                'parking' => false,
+                'vote' => 1,
+                'distance_to_center' => 1
+            ],
+            [
+                'name' => 'Hotel Bellavista',
+                'description' => 'Hotel Bellavista Descrizione',
+                'parking' => false,
+                'vote' => 5,
+                'distance_to_center' => 5.5
+            ],
+            [
+                'name' => 'Hotel Milano',
+                'description' => 'Hotel Milano Descrizione',
+                'parking' => true,
+                'vote' => 2,
+                'distance_to_center' => 50
+            ],
+
+        ];
+
+
+     
+            foreach( $hotels as $element) {
+                
+               if($element['parking'] === true && $_GET['parking'] ==='Sì') {
+                    echo $element['name']; echo '--' ; echo " ";
+                   
+                }elseif($element['parking'] === false && $_GET['parking'] === 'No'){
+                    echo $element['name']; echo '--' ; echo " ";
+                  }
+
+            }
+
+
+
+    ?>
+</div>
+   
+
+<div >
     <ol>
         <?php foreach ( $hotels as $element ) { ?>
             <li>
@@ -87,7 +123,7 @@
               </p>
 
              
-        </li>
+            </li>
 
         <?php } ?>
     </ol>
@@ -127,9 +163,8 @@
 
         <?php } ?>    
   
-</table>
+    </table>
 </div>
-
 
 </body>
 </html>
